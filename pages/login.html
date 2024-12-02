@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie - FitGym</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../styles/auth.css">
+</head>
+<body>
+    <a href="../index.html" class="back-to-home">
+        <i class="fas fa-arrow-left"></i>
+        Powrót
+    </a>
+    <div class="auth-container">
+        <h1>Logowanie</h1>
+        <form id="loginForm" class="auth-form">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Hasło" required>
+            <button type="submit">Zaloguj się</button>
+        </form>
+        <p>Nie masz konta? <a href="register.html">Zarejestruj się</a></p>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                email: e.target.email.value,
+                password: e.target.password.value
+            };
+
+            try {
+                console.log('Attempting login...');
+                const response = await fetch('../server/api/auth/login.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                console.log('Login response status:', response.status);
+                const data = await response.json();
+                console.log('Login response data:', data);
+
+                if (data.status === 'success') {
+                    // Сохраняем токен и данные пользователя
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    
+                    // Проверяем, что данные сохранились
+                    console.log('Saved token:', localStorage.getItem('token'));
+                    console.log('Saved user:', localStorage.getItem('user'));
+                    
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert(data.message || 'Błąd logowania');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Nie można połączyć się z serwerem');
+            }
+        });
+    </script>
+</body>
+</html> 

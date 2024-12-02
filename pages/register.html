@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejestracja - FitGym</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../styles/auth.css">
+</head>
+<body>
+    <a href="../index.html" class="back-to-home">
+        <i class="fas fa-arrow-left"></i>
+        Powrót
+    </a>
+    <div class="auth-container">
+        <h1>Rejestracja</h1>
+        <form id="registerForm" class="auth-form">
+            <input type="text" name="name" placeholder="Imię i nazwisko" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Hasło" required>
+            <input type="password" name="confirm_password" placeholder="Potwierdź hasło" required>
+            <button type="submit">Zarejestruj się</button>
+        </form>
+        <p>Masz już konto? <a href="login.html">Zaloguj się</a></p>
+    </div>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: e.target.name.value,
+                email: e.target.email.value,
+                password: e.target.password.value
+            };
+
+            try {
+                console.log('Sending data:', formData);
+                const response = await fetch('../server/api/auth/register.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(formData)
+                });
+
+                console.log('Response:', response);
+                const data = await response.json();
+                console.log('Data:', data);
+                
+                if (data.user) {
+                    alert('Rejestracja udana!');
+                    window.location.href = 'login.html';
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Błąd połączenia z serwerem');
+            }
+        });
+    </script>
+</body>
+</html> 

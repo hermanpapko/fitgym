@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitGym - Twoja Siłownia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">FitGym</div>
+            <ul>
+                <li><a href="#glowna">Główna</a></li>
+                <li><a href="#uslugi">Usługi</a></li>
+                <li><a href="#harmonogram">Harmonogram</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+                <li class="auth-buttons">
+                    <a href="pages/login.html" class="btn-login">Logowanie</a>
+                    <a href="pages/register.html" class="btn-register">Rejestracja</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="glowna" class="hero">
+            <h1>Witaj w FitGym</h1>
+            <p>Twoje centrum fitness z profesjonalnym sprzętem i doświadczonymi trenerami</p>
+            <div class="hero-buttons">
+                <button onclick="location.href='pages/register.html'" class="btn-primary">Dołącz do nas</button>
+                <button onclick="location.href='#oferta'" class="btn-secondary">Zobacz ofertę</button>
+            </div>
+        </section>
+
+        <section id="oferta" class="features">
+            <h2>Dlaczego my?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-dumbbell"></i>
+                    <h3>Nowoczesny sprzęt</h3>
+                    <p>Najwyższej jakości sprzęt do ćwiczeń od najlepszych producentów</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Doświadczeni trenerzy</h3>
+                    <p>Profesjonalni trenerzy z wieloletnim doświadczeniem</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Elastyczne godziny</h3>
+                    <p>Otwarte 7 dni w tygodniu od 6:00 do 23:00</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="uslugi" class="services">
+            <h2>Nasze Usługi</h2>
+            <p class="section-description">Profesjonalne usługi dostosowane do Twoich celów</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <img src="images/gym.jpg" alt="Siłownia">
+                    <div class="service-content">
+                        <h3>Siłownia</h3>
+                        <p>Nowoczesny sprzęt do ćwiczeń dla wszystkich poziomów zaawansowania</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Strefa cardio</li>
+                            <li><i class="fas fa-check-circle"></i> Strefa wolnych ciężarów</li>
+                            <li><i class="fas fa-check-circle"></i> Strefa maszyn</li>
+                            <li><i class="fas fa-check-circle"></i> Strefa funkcjonalna</li>
+                        </ul>
+                        <button class="btn-service">
+                            Zapisz się
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <img src="images/personal.jpg" alt="Trening personalny">
+                    <div class="service-content">
+                        <h3>Trening personalny</h3>
+                        <p>Indywidualne podejście i profesjonalne wsparcie trenera</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Plan treningowy</li>
+                            <li><i class="fas fa-check-circle"></i> Plan dietetyczny</li>
+                            <li><i class="fas fa-check-circle"></i> Monitoring postępów</li>
+                            <li><i class="fas fa-check-circle"></i> Regularne konsultacje</li>
+                        </ul>
+                        <button class="btn-service">
+                            Zapisz się
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <img src="images/group.jpg" alt="Zajęcia grupowe">
+                    <div class="service-content">
+                        <h3>Zajęcia grupowe</h3>
+                        <p>Różnorodne zajęcia fitness w energicznej atmosferze</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Yoga i Pilates</li>
+                            <li><i class="fas fa-check-circle"></i> Crossfit</li>
+                            <li><i class="fas fa-check-circle"></i> Zumba</li>
+                            <li><i class="fas fa-check-circle"></i> Body Pump</li>
+                        </ul>
+                        <button class="btn-service">
+                            Zapisz się
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cennik" class="pricing">
+            <h2>Wybierz swój plan</h2>
+            <p class="section-description">Elastyczne plany dostosowane do Twoich potrzeb</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Standard</h3>
+                        <div class="price-container">
+                            <p class="price">99 zł</p>
+                            <p class="period">/ miesiąc</p>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Dostęp do siłowni</li>
+                            <li><i class="fas fa-check"></i> Podstawowy sprzęt</li>
+                            <li><i class="fas fa-check"></i> Szafka</li>
+                            <li><i class="fas fa-check"></i> Dostęp 8:00 - 22:00</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Zajęcia grupowe</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Sauna</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Trener personalny</li>
+                        </ul>
+                    </div>
+                    <button onclick="location.href='pages/register.html'" class="btn-outline">Wybierz plan</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Popularny</div>
+                    <div class="pricing-header">
+                        <h3>Premium</h3>
+                        <div class="price-container">
+                            <p class="price">149 zł</p>
+                            <p class="period">/ miesiąc</p>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Wszystko ze Standard</li>
+                            <li><i class="fas fa-check"></i> Zajęcia grupowe</li>
+                            <li><i class="fas fa-check"></i> Sauna</li>
+                            <li><i class="fas fa-check"></i> Dostęp 6:00 - 23:00</li>
+                            <li><i class="fas fa-check"></i> Konsultacja z trenerem</li>
+                            <li><i class="fas fa-check"></i> Aplikacja mobilna</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Plan treningowy</li>
+                        </ul>
+                    </div>
+                    <button onclick="location.href='pages/register.html'" class="btn-primary">Wybierz plan</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>VIP</h3>
+                        <div class="price-container">
+                            <p class="price">249 zł</p>
+                            <p class="period">/ miesiąc</p>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Wszystko z Premium</li>
+                            <li><i class="fas fa-check"></i> Trening personalny</li>
+                            <li><i class="fas fa-check"></i> Plan dietetyczny</li>
+                            <li><i class="fas fa-check"></i> Nielimitowany dostęp 24/7</li>
+                            <li><i class="fas fa-check"></i> Priorytetowa rezerwacja</li>
+                            <li><i class="fas fa-check"></i> Masaż raz w miesiącu</li>
+                            <li><i class="fas fa-check"></i> Indywidualny plan treningowy</li>
+                        </ul>
+                    </div>
+                    <button onclick="location.href='pages/register.html'" class="btn-outline">Wybierz plan</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="harmonogram" class="schedule">
+            <h2>Harmonogram zajęć</h2>
+            <div class="schedule-container">
+                <div class="schedule-filters">
+                    <button class="active" data-day="all">Wszystkie dni</button>
+                    <button data-day="poniedzialek">Poniedziałek</button>
+                    <button data-day="wtorek">Wtorek</button>
+                    <button data-day="sroda">Środa</button>
+                    <button data-day="czwartek">Czwartek</button>
+                    <button data-day="piatek">Piątek</button>
+                    <button data-day="sobota">Sobota</button>
+                    <button data-day="niedziela">Niedziela</button>
+                </div>
+                <div class="schedule-grid">
+                    <div class="schedule-day" data-day="poniedzialek">
+                        <h3>Poniedziałek</h3>
+                        <div class="schedule-item">
+                            <span class="time">8:00 - 9:00</span>
+                            <span class="class">Yoga</span>
+                            <span class="trainer">Anna Kowalska</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">10:00 - 11:30</span>
+                            <span class="class">Crossfit</span>
+                            <span class="trainer">Marek Nowak</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">18:00 - 19:00</span>
+                            <span class="class">Zumba</span>
+                            <span class="trainer">Karolina Wiśniewska</span>
+                        </div>
+                    </div>
+                    <div class="schedule-day" data-day="wtorek">
+                        <h3>Wtorek</h3>
+                        <div class="schedule-item">
+                            <span class="time">9:00 - 10:00</span>
+                            <span class="class">Pilates</span>
+                            <span class="trainer">Magdalena Lis</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">17:00 - 18:30</span>
+                            <span class="class">Box</span>
+                            <span class="trainer">Piotr Kowalczyk</span>
+                        </div>
+                    </div>
+                    <div class="schedule-day" data-day="sroda">
+                        <h3>Środa</h3>
+                        <div class="schedule-item">
+                            <span class="time">7:00 - 8:00</span>
+                            <span class="class">Poranny Fitness</span>
+                            <span class="trainer">Tomasz Adamski</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">16:00 - 17:30</span>
+                            <span class="class">Body Pump</span>
+                            <span class="trainer">Marta Wojcik</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">19:00 - 20:00</span>
+                            <span class="class">Stretching</span>
+                            <span class="trainer">Anna Kowalska</span>
+                        </div>
+                    </div>
+                    <div class="schedule-day" data-day="czwartek">
+                        <h3>Czwartek</h3>
+                        <div class="schedule-item">
+                            <span class="time">8:30 - 9:30</span>
+                            <span class="class">Pilates</span>
+                            <span class="trainer">Magdalena Lis</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">17:00 - 18:00</span>
+                            <span class="class">Zumba</span>
+                            <span class="trainer">Karolina Wiśniewska</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">19:30 - 21:00</span>
+                            <span class="class">Crossfit</span>
+                            <span class="trainer">Marek Nowak</span>
+                        </div>
+                    </div>
+                    <div class="schedule-day" data-day="piatek">
+                        <h3>Piątek</h3>
+                        <div class="schedule-item">
+                            <span class="time">9:00 - 10:00</span>
+                            <span class="class">Yoga</span>
+                            <span class="trainer">Anna Kowalska</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">16:00 - 17:00</span>
+                            <span class="class">Box</span>
+                            <span class="trainer">Piotr Kowalczyk</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">18:30 - 19:30</span>
+                            <span class="class">Body Pump</span>
+                            <span class="trainer">Marta Wojcik</span>
+                        </div>
+                    </div>
+                    <div class="schedule-day" data-day="sobota">
+                        <h3>Sobota</h3>
+                        <div class="schedule-item">
+                            <span class="time">10:00 - 11:00</span>
+                            <span class="class">Yoga</span>
+                            <span class="trainer">Anna Kowalska</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">12:00 - 13:30</span>
+                            <span class="class">Crossfit</span>
+                            <span class="trainer">Marek Nowak</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">15:00 - 16:00</span>
+                            <span class="class">Zumba</span>
+                            <span class="trainer">Karolina Wiśniewska</span>
+                        </div>
+                    </div>
+                    <div class="schedule-day" data-day="niedziela">
+                        <h3>Niedziela</h3>
+                        <div class="schedule-item">
+                            <span class="time">11:00 - 12:00</span>
+                            <span class="class">Pilates</span>
+                            <span class="trainer">Magdalena Lis</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">13:00 - 14:00</span>
+                            <span class="class">Body Pump</span>
+                            <span class="trainer">Marta Wojcik</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="time">16:00 - 17:00</span>
+                            <span class="class">Stretching</span>
+                            <span class="trainer">Anna Kowalska</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontakt">
+            <h2>Kontakt</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Dane kontaktowe</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ul. Sportowa 123, Warszawa</p>
+                    <p><i class="fas fa-phone"></i> +48 123 456 789</p>
+                    <p><i class="fas fa-envelope"></i> kontakt@fitgym.pl</p>
+                    <div class="social-media">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <form id="contactForm" class="contact-form">
+                    <input type="text" placeholder="Imię i nazwisko" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="tel" placeholder="Telefon">
+                    <textarea placeholder="Wiadomość" required></textarea>
+                    <button type="submit">Wyślij</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>FitGym</span>
+                    </div>
+                    <p>Nowoczesne centrum fitness z profesjonalnym sprzętem i doświadczonymi trenerami. Dołącz do nas i rozpocznij swoją przygodę z fitness!</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Szybkie linki</h4>
+                    <ul class="footer-links">
+                        <li><a href="#uslugi"><i class="fas fa-chevron-right"></i> Usługi</a></li>
+                        <li><a href="#cennik"><i class="fas fa-chevron-right"></i> Cennik</a></li>
+                        <li><a href="#harmonogram"><i class="fas fa-chevron-right"></i> Harmonogram</a></li>
+                        <li><a href="#kontakt"><i class="fas fa-chevron-right"></i> Kontakt</a></li>
+                        <li><a href="pages/login.html"><i class="fas fa-chevron-right"></i> Logowanie</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Godziny otwarcia</h4>
+                    <ul class="footer-hours">
+                        <li>
+                            <span>Poniedziałek - Piątek:</span>
+                            <span>6:00 - 23:00</span>
+                        </li>
+                        <li>
+                            <span>Sobota:</span>
+                            <span>8:00 - 22:00</span>
+                        </li>
+                        <li>
+                            <span>Niedziela:</span>
+                            <span>8:00 - 20:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Kontakt</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>ul. Sportowa 123<br>00-001 Warszawa</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+48 123 456 789</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>kontakt@fitgym.pl</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2024 FitGym. Wszystkie prawa zastrzeżone.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Polityka prywatności</a>
+                    <a href="#">Regulamin</a>
+                    <a href="#">Mapa strony</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="script.js"></script>
+</body>
+</html> 

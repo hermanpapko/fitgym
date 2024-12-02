@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel użytkownika - FitGym</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">FitGym</div>
+            <ul>
+                <li><a href="../index.html">Strona główna</a></li>
+                <li><a href="#treningi">Moje treningi</a></li>
+                <li><a href="#harmonogram">Harmonogram</a></li>
+                <li class="user-menu">
+                    <span id="userName"></span>
+                    <button id="logoutBtn" class="btn-logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Wyloguj się
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dashboard-hero">
+            <div class="container">
+                <h1>Panel użytkownika</h1>
+                <p>Zarządzaj swoimi treningami i śledź postępy</p>
+            </div>
+        </section>
+
+        <section class="dashboard-content">
+            <div class="container">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card stats-card">
+                        <h3><i class="fas fa-chart-line"></i> Twoja statystyka</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <i class="fas fa-dumbbell"></i>
+                                <span class="stat-number" id="totalWorkouts">0</span>
+                                <span class="stat-label">Treningi w tym miesiącu</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-clock"></i>
+                                <span class="stat-number" id="totalHours">0</span>
+                                <span class="stat-label">Łączny czas treningów</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-fire"></i>
+                                <span class="stat-number" id="totalCalories">0</span>
+                                <span class="stat-label">Spalone kalorie</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card profile-card">
+                        <h3><i class="fas fa-user"></i> Twój profil</h3>
+                        <div class="profile-content">
+                            <div class="avatar-container">
+                                <img id="avatarImg" src="../images/default-avatar.png" alt="Avatar">
+                                <label for="avatarInput" class="avatar-upload">
+                                    <i class="fas fa-camera"></i>
+                                </label>
+                                <input type="file" id="avatarInput" hidden accept="image/*">
+                            </div>
+                            <div class="profile-details">
+                                <h4 id="profileName"></h4>
+                                <p id="profileEmail"></p>
+                                <div class="membership-badge">
+                                    <i class="fas fa-crown"></i>
+                                    <span>Premium</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card trainings-card">
+                        <h3><i class="fas fa-calendar-alt"></i> Nadchodzące treningi</h3>
+                        <div class="upcoming-trainings" id="upcomingTrainings">
+                            <!-- Тренировки будут добавлены через JavaScript -->
+                        </div>
+                        <button class="btn-add-training">
+                            <i class="fas fa-plus"></i>
+                            Zaplanuj nowy trening
+                        </button>
+                    </div>
+
+                    <div class="dashboard-card progress-card">
+                        <h3><i class="fas fa-chart-bar"></i> Twj postęp</h3>
+                        <div class="progress-chart">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2024 FitGym. Wszystkie prawa zastrzeżone.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Polityka prywatności</a>
+                    <a href="#">Regulamin</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/dashboard.js"></script>
+
+    <div id="newTrainingModal" class="modal">
+        <div class="modal-content">
+            <h3>Zaplanuj nowy trening</h3>
+            <form id="newTrainingForm">
+                <div class="form-group">
+                    <label for="trainingType">Rodzaj treningu</label>
+                    <select id="trainingType" required>
+                        <option value="">Wybierz rodzaj treningu</option>
+                        <option value="Yoga">Yoga</option>
+                        <option value="Crossfit">Crossfit</option>
+                        <option value="Trening personalny">Trening personalny</option>
+                        <option value="Pilates">Pilates</option>
+                        <option value="Box">Box</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="trainingDate">Data</label>
+                    <input type="date" id="trainingDate" required min="<?php echo date('Y-m-d'); ?>">
+                </div>
+                <div class="form-group">
+                    <label for="trainingTime">Godzina</label>
+                    <select id="trainingTime" required>
+                        <option value="">Wybierz godzinę</option>
+                        <!-- Время будет добавлено через JavaScript -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="trainerId">Trener</label>
+                    <select id="trainerId" required>
+                        <option value="">Wybierz trenera</option>
+                        <!-- Тренеры будут загружены через JavaScript -->
+                    </select>
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="btn-primary">Zaplanuj</button>
+                    <button type="button" class="btn-secondary" onclick="closeTrainingModal()">Anuluj</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const newTrainingForm = document.getElementById('newTrainingForm');
+        if (newTrainingForm) {
+            newTrainingForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const trainingData = {
+                    type: document.getElementById('trainingType').value,
+                    date: document.getElementById('trainingDate').value,
+                    time: document.getElementById('trainingTime').value,
+                    trainer_id: document.getElementById('trainerId').value
+                };
+
+                console.log('Sending training data:', trainingData);
+
+                try {
+                    const response = await fetch('../server/api/trainings/create.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        },
+                        body: JSON.stringify(trainingData)
+                    });
+
+                    console.log('Response:', response);
+                    const data = await response.json();
+                    console.log('Response data:', data);
+
+                    if (data.status === 'success') {
+                        alert('Trening został zaplanowany!');
+                        closeTrainingModal();
+                        location.reload();
+                    } else {
+                        throw new Error(data.message || 'Nie udało się zaplanować treningu');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert(error.message || 'Wystąpił błąd podczas planowania treningu');
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html> 
