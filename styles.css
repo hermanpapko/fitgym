@@ -133,7 +133,7 @@ nav ul li a:hover {
 }
 
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/gym-background.jpg');
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../fitgym/uploads/gym-background.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1048,4 +1048,59 @@ section h2 {
 .services h2 {
     text-align: center;
     margin-bottom: 1rem;
+}
+
+/* Стили для секции услуг */
+.services {
+    padding: 6rem 2rem;
+    background: #f8f9fa;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 1200px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+.contact-form button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.contact-form button[type="submit"]:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.contact-form button[type="submit"]:not(:disabled):hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
 } 

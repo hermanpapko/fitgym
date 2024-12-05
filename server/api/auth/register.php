@@ -17,7 +17,7 @@ try {
     }
     
     // Создаем пользователя
-    $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO users (name, email, password, role, membership) VALUES (?, ?, ?, 'user', 'standard')");
     $password_hash = password_hash($data->password, PASSWORD_BCRYPT);
     
     if($stmt->execute([$data->name, $data->email, $password_hash])) {

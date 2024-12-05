@@ -5,50 +5,50 @@ try {
     $database = new Database();
     $db = $database->getConnection();
     
-    echo "Connected to database\n";
+    // Проверяем наличие тренеров
+    $result = $db->query("SELECT id, name, email, role FROM users WHERE role = 'trainer'");
+    echo "Available trainers:\n";
+    $trainers = $result->fetchAll(PDO::FETCH_ASSOC);
+    print_r($trainers);
     
-    // Проверяем существование пользователя и тренера
-    $userId = 1; // ID существующего пользователя
-    $trainerId = 2; // ID существующего тренера
+    if (empty($trainers)) {
+        throw new Exception("No trainers found in database");
+    }
     
-    $checkUsers = $db->prepare("
-        SELECT 
-            (SELECT COUNT(*) FROM users WHERE id = ?) as user_exists,
-            (SELECT COUNT(*) FROM users WHERE id = ? AND role = 'trainer') as trainer_exists
-    ");
-    $checkUsers->execute([$userId, $trainerId]);
-    $result = $checkUsers->fetch(PDO::FETCH_ASSOC);
+    // Берем первого тренера для теста
+    $trainer = $trainers[0];
     
-    echo "User exists: " . ($result['user_exists'] ? 'Yes' : 'No') . "\n";
-    echo "Trainer exists: " . ($result['trainer_exists'] ? 'Yes' : 'No') . "\n";
+    // Тестовые данные тренировки
+    $testTraining = [
+        'user_id' => 1, // ID тестового пользователя
+        'trainer_id' => $trainer['id'],
+        'type' => 'Yoga',
+        'date' => date('Y-m-d'), // Сегодняшняя дата
+        'time' => '10:00',
+        'status' => 'scheduled'
+    ];
     
     // Пробуем добавить тренировку
     $query = "INSERT INTO trainings (user_id, trainer_id, type, date, time, status) 
-              VALUES (?, ?, ?, ?, ?, 'scheduled')";
-              
+              VALUES (:user_id, :trainer_id, :type, :date, :time, :status)";
+    
     $stmt = $db->prepare($query);
     
-    $testData = [
-        $userId,
-        $trainerId,
-        'Test Training',
-        date('Y-m-d'),
-        '10:00:00'
-    ];
-    
-    echo "Trying to insert training...\n";
-    $result = $stmt->execute($testData);
-    
-    if ($result) {
+    if ($stmt->execute($testTraining)) {
         $newId = $db->lastInsertId();
-        echo "Training added successfully with ID: " . $newId . "\n";
+        echo "\nTraining added successfully with ID: " . $newId . "\n";
         
-        // Проверяем добавленную запись
-        $check = $db->query("SELECT * FROM trainings WHERE id = " . $newId);
-        print_r($check->fetch(PDO::FETCH_ASSOC));
+        // Проверяем добавленную тренировку
+        $checkQuery = "SELECT * FROM trainings WHERE id = ?";
+        $checkStmt = $db->prepare($checkQuery);
+        $checkStmt->execute([$newId]);
+        $training = $checkStmt->fetch(PDO::FETCH_ASSOC);
+        
+        echo "\nAdded training details:\n";
+        print_r($training);
     } else {
-        echo "Failed to add training\n";
-        print_r($stmt->errorInfo());
+        $error = $stmt->errorInfo();
+        throw new Exception("Failed to add training: " . $error[2]);
     }
     
 } catch (Exception $e) {

@@ -16,11 +16,12 @@ class Database {
                 $this->password
             );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            error_log("Database connection established");
+            return $this->conn;
         } catch(PDOException $e) {
-            echo "Connection error: " . $e->getMessage();
+            error_log("Connection error: " . $e->getMessage());
+            throw new Exception("Nie można połączyć się z bazą danych");
         }
-
-        return $this->conn;
     }
 }
 ?> 

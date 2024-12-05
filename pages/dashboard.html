@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Panel użytkownika - FitGym</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -13,18 +13,18 @@
     <header>
         <nav>
             <div class="logo">FitGym</div>
-            <ul>
-                <li><a href="../index.html">Strona główna</a></li>
-                <li><a href="#treningi">Moje treningi</a></li>
-                <li><a href="#harmonogram">Harmonogram</a></li>
-                <li class="user-menu">
-                    <span id="userName"></span>
-                    <button id="logoutBtn" class="btn-logout">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Wyloguj się
-                    </button>
-                </li>
-            </ul>
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="../index.html">Strona główna</a></li>
+                    <li class="user-menu">
+                        <span id="userName"></span>
+                        <button id="logoutBtn" class="btn-logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Wyloguj się
+                        </button>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 
@@ -64,7 +64,7 @@
                         <h3><i class="fas fa-user"></i> Twój profil</h3>
                         <div class="profile-content">
                             <div class="avatar-container">
-                                <img id="avatarImg" src="../images/default-avatar.png" alt="Avatar">
+                                <img id="avatarImg" src="../uploads/default-avatar.jpg" alt="Avatar">
                                 <label for="avatarInput" class="avatar-upload">
                                     <i class="fas fa-camera"></i>
                                 </label>
@@ -73,9 +73,9 @@
                             <div class="profile-details">
                                 <h4 id="profileName"></h4>
                                 <p id="profileEmail"></p>
-                                <div class="membership-badge">
+                                <div class="membership-badge" id="membershipBadge">
                                     <i class="fas fa-crown"></i>
-                                    <span>Premium</span>
+                                    <span id="membershipText">...</span>
                                 </div>
                             </div>
                         </div>
@@ -86,16 +86,59 @@
                         <div class="upcoming-trainings" id="upcomingTrainings">
                             <!-- Тренировки будут добавлены через JavaScript -->
                         </div>
-                        <button class="btn-add-training">
+                        <button class="btn-add-training" onclick="openTrainingModal()"">
                             <i class="fas fa-plus"></i>
                             Zaplanuj nowy trening
                         </button>
                     </div>
 
                     <div class="dashboard-card progress-card">
-                        <h3><i class="fas fa-chart-bar"></i> Twj postęp</h3>
-                        <div class="progress-chart">
-                            <canvas id="progressChart"></canvas>
+                        <h3><i class="fas fa-chart-bar"></i> Twój postęp</h3>
+                        <div class="progress-notes">
+                            <div id="notesList" class="notes-list">
+                                <!-- Заметки будут добавлены через JavaScript -->
+                            </div>
+                            <div class="add-note-form">
+                                <textarea 
+                                    id="newNote" 
+                                    placeholder="Napisz notatkę o swoim postępie..." 
+                                    rows="3"
+                                    style="
+                                        width: 100%;
+                                        padding: 1rem;
+                                        border: 2px solid #e9ecef;
+                                        border-radius: 10px;
+                                        resize: vertical;
+                                        font-family: inherit;
+                                        min-height: 100px;
+                                        font-size: 1rem;
+                                        line-height: 1.5;
+                                        transition: all 0.3s ease;
+                                        background: white;
+                                    "
+                                ></textarea>
+                                <button id="saveNote" class="btn-primary">
+                                    Zapisz notatkę
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="trainingsSection" class="dashboard-section" style="display: none;">
+                        <div class="dashboard-card">
+                            <h3><i class="fas fa-dumbbell"></i> Moje treningi</h3>
+                            <div class="trainings-list">
+                                <!-- Здесь будет список тренировок -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="scheduleSection" class="dashboard-section" style="display: none;">
+                        <div class="dashboard-card">
+                            <h3><i class="fas fa-calendar"></i> Harmonogram</h3>
+                            <div class="schedule-content">
+                                <!-- Здесь будет расписание -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -115,13 +158,10 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/dashboard.js"></script>
-
     <div id="newTrainingModal" class="modal">
         <div class="modal-content">
             <h3>Zaplanuj nowy trening</h3>
-            <form id="newTrainingForm">
+            <form id="newTrainingForm" onsubmit="event.preventDefault(); console.log('Form submitted!'); handleTrainingSubmit(event);">
                 <div class="form-group">
                     <label for="trainingType">Rodzaj treningu</label>
                     <select id="trainingType" required>
@@ -135,74 +175,152 @@
                 </div>
                 <div class="form-group">
                     <label for="trainingDate">Data</label>
-                    <input type="date" id="trainingDate" required min="<?php echo date('Y-m-d'); ?>">
+                    <input type="date" id="trainingDate" required>
                 </div>
                 <div class="form-group">
                     <label for="trainingTime">Godzina</label>
                     <select id="trainingTime" required>
                         <option value="">Wybierz godzinę</option>
-                        <!-- Время будет добавлено через JavaScript -->
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="trainerId">Trener</label>
                     <select id="trainerId" required>
                         <option value="">Wybierz trenera</option>
-                        <!-- Тренеры будут загружены через JavaScript -->
                     </select>
                 </div>
                 <div class="modal-buttons">
-                    <button type="submit" class="btn-primary">Zaplanuj</button>
+                    <button type="button" class="btn-primary" onclick="handleTrainingSubmit(event)">Zaplanuj</button>
                     <button type="button" class="btn-secondary" onclick="closeTrainingModal()">Anuluj</button>
                 </div>
             </form>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/trainings.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/progress.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const newTrainingForm = document.getElementById('newTrainingForm');
-        if (newTrainingForm) {
-            newTrainingForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const trainingData = {
-                    type: document.getElementById('trainingType').value,
-                    date: document.getElementById('trainingDate').value,
-                    time: document.getElementById('trainingTime').value,
-                    trainer_id: document.getElementById('trainerId').value
-                };
+        async function handleTrainingSubmit(e) {
+            e.preventDefault();
+            console.log('Form submitted');
+            
+            const typeElement = document.getElementById('trainingType');
+            const dateElement = document.getElementById('trainingDate');
+            const timeElement = document.getElementById('trainingTime');
+            const trainerElement = document.getElementById('trainerId');
 
-                console.log('Sending training data:', trainingData);
-
-                try {
-                    const response = await fetch('../server/api/trainings/create.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${localStorage.getItem('token')}`
-                        },
-                        body: JSON.stringify(trainingData)
-                    });
-
-                    console.log('Response:', response);
-                    const data = await response.json();
-                    console.log('Response data:', data);
-
-                    if (data.status === 'success') {
-                        alert('Trening został zaplanowany!');
-                        closeTrainingModal();
-                        location.reload();
-                    } else {
-                        throw new Error(data.message || 'Nie udało się zaplanować treningu');
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert(error.message || 'Wystąpił błąd podczas planowania treningu');
-                }
+            console.log('Form elements:', {
+                typeElement,
+                dateElement,
+                timeElement,
+                trainerElement
             });
+            
+            const trainingData = {
+                type: typeElement.value,
+                date: dateElement.value,
+                time: timeElement.value,
+                trainer_id: trainerElement.value
+            };
+
+            console.log('Training data to send:', trainingData);
+            
+            try {
+                const token = localStorage.getItem('token');
+                console.log('Using token:', token);
+
+                const response = await fetch('../server/api/trainings/create.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(trainingData)
+                });
+                
+                console.log('Response status:', response.status);
+                
+                const data = await response.json();
+                console.log('Server response:', data);
+                
+                if (data.status === 'success') {
+                    alert('Trening został zaplanowany pomyślnie!');
+                    closeTrainingModal();
+                    if (typeof loadUpcomingTrainings === 'function') {
+                        await loadUpcomingTrainings();
+                    }
+                } else {
+                    throw new Error(data.message || 'Nie udało się zaplanować treningu');
+                }
+            } catch (error) {
+                console.error('Error details:', error);
+                alert(error.message || 'Wystąpił błąd podczas planowania treningu');
+            }
         }
-    });
+
+        async function openTrainingModal() {
+            console.log('Opening modal');
+            const modal = document.getElementById('newTrainingModal');
+            if (!modal) {
+                console.error('Modal not found');
+                return;
+            }
+
+            try {
+                const response = await fetch('../server/api/trainers/list.php', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                const data = await response.json();
+                console.log('Trainers data:', data);
+                
+                if (data.status === 'success' && data.trainers) {
+                    // Заполняем список тренеров
+                    const trainerSelect = document.getElementById('trainerId');
+                    if (trainerSelect) {
+                        trainerSelect.innerHTML = '<option value="">Wybierz trenera</option>' +
+                            data.trainers.map(trainer => 
+                                `<option value="${trainer.id}">${trainer.name}</option>`
+                            ).join('');
+                    }
+
+                    // Заполняем временные слоты
+                    const timeSelect = document.getElementById('trainingTime');
+                    if (timeSelect) {
+                        timeSelect.innerHTML = generateTimeOptions();
+                    }
+
+                    // Показываем модальное окно
+                    modal.classList.add('active');
+                }
+            } catch (error) {
+                console.error('Error loading trainers:', error);
+                alert('Błąd podczas ładowania listy trenerów');
+            }
+        }
+
+        function closeTrainingModal() {
+            console.log('Closing modal');
+            const modal = document.getElementById('newTrainingModal');
+            if (modal) {
+                modal.classList.remove('active');
+                const form = document.getElementById('newTrainingForm');
+                if (form) form.reset();
+            }
+        }
+
+        function generateTimeOptions() {
+            let options = '<option value="">Wybierz godzinę</option>';
+            for (let hour = 6; hour <= 21; hour++) {
+                const time = `${hour.toString().padStart(2, '0')}:00`;
+                options += `<option value="${time}">${time}</option>`;
+            }
+            return options;
+        }
     </script>
 </body>
 </html> 

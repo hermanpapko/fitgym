@@ -6,21 +6,26 @@
     <title>FitGym - Twoja Siłownia</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="js/membership.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">FitGym</div>
-            <ul>
-                <li><a href="#glowna">Główna</a></li>
-                <li><a href="#uslugi">Usługi</a></li>
-                <li><a href="#harmonogram">Harmonogram</a></li>
-                <li><a href="#kontakt">Kontakt</a></li>
-                <li class="auth-buttons">
-                    <a href="pages/login.html" class="btn-login">Logowanie</a>
-                    <a href="pages/register.html" class="btn-register">Rejestracja</a>
-                </li>
-            </ul>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="#glowna">Główna</a></li>
+                    <li><a href="#uslugi">Usługi</a></li>
+                    <li><a href="#harmonogram">Harmonogram</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                    <li class="auth-buttons">
+                        <a href="pages/login.html" class="btn-login">Logowanie</a>
+                        <a href="pages/register.html" class="btn-register">Rejestracja</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 
@@ -105,7 +110,7 @@
                     <div class="service-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <img src="images/group.jpg" alt="Zajęcia grupowe">
+                    <img src="../fitgym/uploads/group.webp" alt="Zajęcia grupowe">
                     <div class="service-content">
                         <h3>Zajęcia grupowe</h3>
                         <p>Różnorodne zajęcia fitness w energicznej atmosferze</p>
@@ -147,7 +152,7 @@
                             <li class="disabled"><i class="fas fa-times"></i> Trener personalny</li>
                         </ul>
                     </div>
-                    <button onclick="location.href='pages/register.html'" class="btn-outline">Wybierz plan</button>
+                    <button class="btn-outline" onclick="updatePlan('standard')">Wybierz plan</button>
                 </div>
 
                 <div class="pricing-card featured">
@@ -170,7 +175,7 @@
                             <li class="disabled"><i class="fas fa-times"></i> Plan treningowy</li>
                         </ul>
                     </div>
-                    <button onclick="location.href='pages/register.html'" class="btn-primary">Wybierz plan</button>
+                    <button class="btn-primary" onclick="updatePlan('premium')">Wybierz plan</button>
                 </div>
 
                 <div class="pricing-card">
@@ -192,7 +197,7 @@
                             <li><i class="fas fa-check"></i> Indywidualny plan treningowy</li>
                         </ul>
                     </div>
-                    <button onclick="location.href='pages/register.html'" class="btn-outline">Wybierz plan</button>
+                    <button class="btn-outline" onclick="updatePlan('vip')">Wybierz plan</button>
                 </div>
             </div>
         </section>
@@ -350,11 +355,11 @@
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-                <form id="contactForm" class="contact-form">
-                    <input type="text" placeholder="Imię i nazwisko" required>
-                    <input type="email" placeholder="Email" required>
-                    <input type="tel" placeholder="Telefon">
-                    <textarea placeholder="Wiadomość" required></textarea>
+                <form id="contactForm" class="contact-form" onsubmit="submitForm(event)">
+                    <input type="text" name="name" placeholder="Imię i nazwisko" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="tel" name="phone" placeholder="Telefon">
+                    <textarea name="message" placeholder="Wiadomość" required></textarea>
                     <button type="submit">Wyślij</button>
                 </form>
             </div>
@@ -438,8 +443,5 @@
             </div>
         </div>
     </footer>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="script.js"></script>
 </body>
 </html> 
