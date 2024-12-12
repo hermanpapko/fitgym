@@ -33,7 +33,7 @@ async function updatePlan(planType) {
     }
 }
 
-// Функция для отправки формы
+// Функция �� отправки формы
 async function submitForm(event) {
     event.preventDefault();
     
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const token = localStorage.getItem('token');
     const user = JSON.parse(localStorage.getItem('user'));
     
-    // Находим элементы навигации
+    // Находи элементы навигации
     const navUl = document.querySelector('nav ul');
     
     if (token && user) {
@@ -207,4 +207,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const navLinks = document.querySelector('.nav-links');
         navLinks.classList.toggle('active');
     });
-}); 
+
+    const menuToggle = document.querySelector('.menu-toggle');
+
+

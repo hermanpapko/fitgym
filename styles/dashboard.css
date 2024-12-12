@@ -310,4 +310,109 @@ main {
         transform: translateY(0);
     }
 }
+
+/* Добавьте эти стили в ваш CSS файл */
+.note-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.note-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #eee;
+}
+
+.note-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.btn-delete-note {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-delete-note:hover {
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.no-notes {
+    text-align: center;
+    color: #666;
+    padding: 1rem;
+}
+
+.error {
+    color: #dc3545;
+    text-align: center;
+    padding: 1rem;
+}
+
+.note-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.note-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.btn-delete-note {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.btn-delete-note:hover {
+    color: #dc3545;
+}
+
+.note-content {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.btn-delete-note {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.btn-delete-note:hover {
+    color: #dc3545;
+}
  

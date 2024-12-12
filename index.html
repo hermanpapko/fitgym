@@ -62,7 +62,6 @@
 
         <section id="uslugi" class="services">
             <h2>Nasze Usługi</h2>
-            <p class="section-description">Profesjonalne usługi dostosowane do Twoich celów</p>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
@@ -78,10 +77,7 @@
                             <li><i class="fas fa-check-circle"></i> Strefa maszyn</li>
                             <li><i class="fas fa-check-circle"></i> Strefa funkcjonalna</li>
                         </ul>
-                        <button class="btn-service">
-                            Zapisz się
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
+                        <button class="btn-service">Zapisz się</button>
                     </div>
                 </div>
 
@@ -99,10 +95,7 @@
                             <li><i class="fas fa-check-circle"></i> Monitoring postępów</li>
                             <li><i class="fas fa-check-circle"></i> Regularne konsultacje</li>
                         </ul>
-                        <button class="btn-service">
-                            Zapisz się
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
+                        <button class="btn-service">Zapisz się</button>
                     </div>
                 </div>
 
@@ -120,10 +113,19 @@
                             <li><i class="fas fa-check-circle"></i> Zumba</li>
                             <li><i class="fas fa-check-circle"></i> Body Pump</li>
                         </ul>
-                        <button class="btn-service">
-                            Zapisz się
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
+                        <button class="btn-service">Zapisz się</button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <img src="uploads/wynajem_sali.jpg" alt="Wynajem sali">
+                    <div class="service-content">
+                        <h3>Wynajem sali</h3>
+                        <p>Oferujemy wynajem sali na różne wydarzenia i treningi.</p>
+                        <button class="btn-service" onclick="location.href='#kontakt'">Wynajmij</button>
                     </div>
                 </div>
             </div>
@@ -355,14 +357,17 @@
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-                <form id="contactForm" class="contact-form" onsubmit="submitForm(event)">
-                    <input type="text" name="name" placeholder="Imię i nazwisko" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <input type="tel" name="phone" placeholder="Telefon">
-                    <textarea name="message" placeholder="Wiadomość" required></textarea>
-                    <button type="submit">Wyślij</button>
-                </form>
+                <div id="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2442.678239460239!2d21.05787487668779!3d52.24922775624143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecdb56b2ce031%3A0x82be6882c595d16f!2sMi%C5%84ska%2025%2C%2003-808%20Warszawa!5e0!3m2!1sen!2spl!4v1733990338409!5m2!1sen!2spl" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
+            <form id="contactForm" class="contact-form" onsubmit="submitForm(event)">
+                <input type="text" name="name" placeholder="Imię i nazwisko" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="tel" name="phone" placeholder="Telefon">
+                <textarea name="message" placeholder="Wiadomość" required></textarea>
+                <button type="submit">Wyślij</button>
+            </form>
         </section>
     </main>
 
