@@ -305,7 +305,7 @@ nav ul li a:hover {
     font-size: 1.2rem;
 }
 
-.btn-service {
+.btn-service, .btn-service1 {
     width: 100%;
     padding: 1rem;
     background-color: transparent;
@@ -325,12 +325,12 @@ nav ul li a:hover {
     transition: transform 0.3s ease;
 }
 
-.btn-service:hover {
+.btn-service, .btn-service1:hover {
     background-color: var(--primary-color);
     color: white;
 }
 
-.btn-service:hover i {
+.btn-service, .btn-service1:hover i {
     transform: translateX(5px);
 }
 

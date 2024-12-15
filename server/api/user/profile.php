@@ -43,6 +43,14 @@ try {
 
     error_log("Full user data: " . print_r($user, true));
 
+    // Добавляем код для кодирования аватара в base64 и получения MIME-типа
+    if ($user['avatar']) {
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $mimeType = $finfo->buffer($user['avatar']);
+        $user['avatar'] = base64_encode($user['avatar']);
+        $user['avatar_mime'] = $mimeType;
+    }
+
     // Проверяем данные перед отправкой
     $response = [
         'status' => 'success',

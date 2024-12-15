@@ -307,7 +307,7 @@ nav ul li a:hover {
     font-size: 1.2rem;
 }
 
-.btn-service {
+.btn-service, .btn-service1 {
     width: 100%;
     padding: 1rem;
     background-color: transparent;
@@ -327,12 +327,12 @@ nav ul li a:hover {
     transition: transform 0.3s ease;
 }
 
-.btn-service:hover {
+.btn-service, .btn-service1:hover {
     background-color: var(--primary-color);
     color: white;
 }
 
-.btn-service:hover i {
+.btn-service, .btn-service1:hover i {
     transform: translateX(5px);
 }
 
@@ -1086,7 +1086,7 @@ section h2 {
     margin-bottom: 1rem;
 }
 
-/* Стили для секции услуг */
+/* Стили для секции усл��г */
 .services {
     padding: 6rem 2rem;
     background: #f8f9fa;
@@ -1242,4 +1242,112 @@ section h2 {
     border: 2px solid #ddd;
     border-radius: 10px;
     overflow: hidden;
+}
+
+/* Стили для кнопки hamburger menu */
+.menu-toggle {
+    display: none; /* Скрыто на больших экранах */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--dark-color);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+@media (max-width: 768px) {
+    /* Показываем кнопку hamburger на мобильных */
+    .menu-toggle {
+        display: block;
+    }
+    
+    /* Скрываем навигационные ссылки на мобильных */
+    .nav-links {
+        display: none;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        position: absolute;
+        top: 60px; /* Высота header */
+        left: 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* Отображаем ��авигационные ссылки при активном классе */
+    .nav-links.active {
+        display: block;
+    }
+    
+    /* Вертикальное расположение ссылок */
+    .nav-links ul {
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+    
+    .nav-links ul li {
+        margin: 1rem 0;
+        text-align: center;
+    }
+}
+@media (max-width: 600px) {
+    #map {
+      display: block;
+      width: 100%; /* Элемент с id="item2" будет перенесён на новую строку */
+    }
+  }
+
+/* Стили для баннера промо-акции */
+.promo-banner {
+    background-color: #f0f8ff;
+    color: #333;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+    transition: opacity 0.3s ease;
+}
+
+/* Стили для текста в баннере */
+.promo-banner p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Стили для кнопки регистрации */
+.register-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: #218838;
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+}
+
+.contact-info, #map {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column; 
+    }
+
+    #map {
+        width: 100%; 
+        height: 300px;
+    }
 }

@@ -341,11 +341,13 @@ main {
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 4px;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1.5rem;
 }
 
 .btn-delete-note:hover {
     background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
 }
 
 .no-notes {
@@ -416,3 +418,6 @@ main {
     color: #dc3545;
 }
  
+#logo {
+    text-decoration: none;
+}

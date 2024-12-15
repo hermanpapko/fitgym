@@ -1,99 +1,3 @@
-// Глобальная функция для обновления плана
-async function updatePlan(planType) {
-    console.log('updatePlan called with:', planType);
-    const token = localStorage.getItem('token');
-    
-    if (!token) {
-        window.location.href = 'pages/register.html';
-        return;
-    }
-    
-    try {
-        const response = await fetch('server/api/user/update-membership.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({ membership: planType })
-        });
-        
-        const data = await response.json();
-        console.log('Response data:', data);
-        
-        if (data.status === 'success') {
-            alert('Plan został zmieniony pomyślnie!');
-            window.location.href = 'pages/dashboard.html';
-        } else {
-            throw new Error(data.message);
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Błąd podczas zmiany planu: ' + error.message);
-    }
-}
-
-// Функция �� отправки формы
-async function submitForm(event) {
-    event.preventDefault();
-    
-    const form = event.target;
-    const submitButton = form.querySelector('button[type="submit"]');
-    
-    // Блокируем кнопку на время отправки
-    submitButton.disabled = true;
-    submitButton.textContent = 'Wysyłanie...';
-    
-    try {
-        // Собираем данные формы
-        const formData = {
-            name: form.querySelector('input[name="name"]').value,
-            email: form.querySelector('input[name="email"]').value,
-            phone: form.querySelector('input[name="phone"]').value,
-            message: form.querySelector('textarea[name="message"]').value
-        };
-        
-        console.log('Sending data:', formData); // Отладочная информация
-        
-        // Отправляем запрос
-        const response = await fetch('submit_form.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
-        
-        console.log('Response status:', response.status); // Отладочная информация
-        
-        // Проверяем тип ответа
-        const contentType = response.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-            throw new Error('Otrzymano nieprawidłową odpowiedź z serwera');
-        }
-        
-        const data = await response.json();
-        console.log('Response data:', data); // Отладочная информация
-        
-        if (data.status === 'success') {
-            // Показываем сообщение об успехе
-            alert(data.message);
-            form.reset();
-        } else {
-            throw new Error(data.message || 'Wystąpił nieznany błąd');
-        }
-    } catch (error) {
-        console.error('Error:', error); // Отладочная информация
-        // Показываем ошибку
-        alert('Wystąpił błąd podczas wysyłania wiadomości: ' + error.message);
-    } finally {
-        // Разблокируем кнопку
-        submitButton.disabled = false;
-        submitButton.textContent = 'Wyślij';
-    }
-}
-
 document.addEventListener('DOMContentLoaded', async function() {
     console.log('DOM loaded');
     
@@ -101,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const token = localStorage.getItem('token');
     const user = JSON.parse(localStorage.getItem('user'));
     
-    // Находи элементы навигации
+    // Находим элементы навигации
     const navUl = document.querySelector('nav ul');
     
     if (token && user) {
@@ -121,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 </button>
             </li>
         `;
-
+    
         // Добавляем обработчик для кнопки выхода
         document.getElementById('logoutBtn').addEventListener('click', function() {
             if (confirm('Czy na pewno chcesz się wylogować?')) {
@@ -154,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
     }
 
-    // Обработка кнопок записи на услуги
+    // Обра��отка кнопок записи на услуги
     const serviceButtons = document.querySelectorAll('.btn-service');
     serviceButtons.forEach(button => {
         button.addEventListener('click', function(e) {
@@ -208,7 +112,15 @@ document.addEventListener('DOMContentLoaded', async function() {
         navLinks.classList.toggle('active');
     });
 
-    const menuToggle = document.querySelector('.menu-toggle');
+    // Добавляем обработчик клика на навигационные ссылки
+    const navLinks = document.querySelectorAll('.nav-links ul li a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const navLinksContainer = document.querySelector('.nav-links');
+            if (navLinksContainer.classList.contains('active')) {
+                navLinksContainer.classList.remove('active');
+            }
+        });
+    });
 
-
-});
+}); 
